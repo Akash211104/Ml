@@ -1,0 +1,21 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+data=pd.read_csv('Temperatures.csv')
+data
+x_train=data[['YEAR']]
+y_train=data[['ANNUAL']]
+from sklearn.linear_model import LinearRegression
+
+model=LinearRegression()
+model.fit(x_train, y_train)
+predicted=model.predict(x_train)
+from sklearn.metrics import mean_squared_error,mean_absolute_error, r2_score
+mean_squared_error(y_train,predicted)
+mean_absolute_error(y_train,predicted)
+r2_score(y_train,predicted)
+plt.scatter(x_train,y_train, label = "Actual",color="g")
+plt.plot(x_train,predicted, label = "predicted",color="red")
+plt.xlabel("YEAR")
+plt.ylabel("TEMPERATURE")
+plt.title("ANNUAL TEMP REC")
+plt.legend()
